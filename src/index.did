@@ -1,0 +1,17 @@
+type MovieTicket = record {
+  id : text;
+  movie : text;
+  createdAt : nat64;
+  seat : nat64;
+  "reserved" : bool;
+};
+type TicketPayload = record { movie : text; seat : nat64 };
+type _AzleResult = variant { Ok : MovieTicket; Err : text };
+type _AzleResult_1 = variant { Ok : vec MovieTicket; Err : text };
+service : () -> {
+  addTicket : (TicketPayload) -> (_AzleResult);
+  deleteTicket : (text) -> (_AzleResult);
+  getAllTickets : () -> (_AzleResult_1) query;
+  getTicket : (text) -> (_AzleResult) query;
+  reserveTicket : (text) -> (_AzleResult);
+}
